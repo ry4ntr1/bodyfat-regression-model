@@ -1,4 +1,4 @@
-name: mlenv
+name: venv
 channels:
   - conda-forge
 dependencies:
@@ -98,6 +98,7 @@ dependencies:
   - openjpeg=2.5.0=hbc2ba62_2
   - openssl=3.1.0=h03a7124_0
   - packaging=23.1=pyhd8ed1ab_0
+  - pandas=2.0.0=py310h2b830bf_0
   - pango=1.50.14=h6c112b8_0
   - parso=0.8.3=pyhd8ed1ab_0
   - patsy=0.5.3=pyhd8ed1ab_0
@@ -116,7 +117,6 @@ dependencies:
   - pthread-stubs=0.4=h27ca646_1001
   - ptyprocess=0.7.0=pyhd3deb0d_0
   - pure_eval=0.2.2=pyhd8ed1ab_0
-  - py-xgboost=1.7.4=cpu_py310ha244a38_0
   - pycparser=2.21=pyhd8ed1ab_0
   - pygments=2.15.0=pyhd8ed1ab_0
   - pyopenssl=23.1.1=pyhd8ed1ab_0
@@ -132,6 +132,7 @@ dependencies:
   - readline=8.2=h92ec313_1
   - requests=2.28.2=pyhd8ed1ab_1
   - scikit-learn=1.2.2=py310h98c5782_1
+  - scipy=1.10.1=py310ha0d8a01_0
   - seaborn=0.12.2=hd8ed1ab_0
   - seaborn-base=0.12.2=pyhd8ed1ab_0
   - setuptools=67.6.1=pyhd8ed1ab_0
@@ -162,8 +163,6 @@ dependencies:
       - flask==2.2.3
       - jinja2==3.1.2
       - markupsafe==2.1.2
-      - pandas==2.0.0
-      - scipy==1.10.1
       - werkzeug==2.2.3
       - xgboost==1.7.5
 prefix: /Users/ryantri/miniforge3/envs/mlenv

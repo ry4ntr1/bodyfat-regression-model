@@ -20,11 +20,11 @@ class DataIngestion:
     def __init__(self):
         self.ingestion_config = DataIngestionConfig()
 
-    def init_data_ingestion(self):
+    def initiate_data_ingestion(self):
         logging.info("Data Ingestion Started")
         try:
             # Read the data whether raw or get it from database
-            df = pd.read_csv("notebooks/data/stud.csv")
+            df = pd.read_csv("notebook/data/stud.csv")
             logging.info("Read Dataset As DataFrame")
 
             os.makedirs(os.path.dirname(
@@ -34,9 +34,11 @@ class DataIngestion:
                       index=False, header=True)
 
             logging.info("Train Test Split Initiated")
-            train, test = train_test_split(df, test_size=0.2, random_state=42)
+            train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
 
-            train_set, test_set = df.to_csv(self.ingestion_config.train_data_path, index=False, header=True), df.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
+            
+            train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
+            test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
             logging.info("Data Ingestion Complete")
 
             return (
@@ -50,4 +52,4 @@ class DataIngestion:
 
 if __name__ == "__main__":
     obj=DataIngestion()
-    obj.init_data_ingestion()
+    obj.initiate_data_ingestion()

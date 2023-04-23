@@ -3,22 +3,35 @@ import sys
 
 import numpy as np
 import pandas as pd
-import dill
 import pickle
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
 
+from src.logger import logging
 from src.exception import CustomException
 
 
 def save_object(file_path, obj):
     try:
+        logging.info("utils.py: save_object() called")
         dir_path = os.path.dirname(file_path)
 
         os.makedirs(dir_path, exist_ok=True)
 
         with open(file_path, "wb") as file_obj:
             pickle.dump(obj, file_obj)
+        logging.info("utils.py: save_object() finished")
+
+    except Exception as e:
+        raise CustomException(e, sys)
+
+
+def load_object(file_path):
+    try:
+        logging.info("utils.py: load_object() called")
+        with open(file_path, "rb") as file_obj:
+            logging.info("utils.py: load_object() finished")
+            return pickle.load(file_obj)
 
     except Exception as e:
         raise CustomException(e, sys)
@@ -26,6 +39,7 @@ def save_object(file_path, obj):
 
 def evaluate_models(x_train, y_train, x_test, y_test, models, param):
     try:
+        logging.info("utils.py: evaluate_models() called")
         report = {}
 
         for i in range(len(list(models))):
@@ -38,8 +52,6 @@ def evaluate_models(x_train, y_train, x_test, y_test, models, param):
             model.set_params(**gs.best_params_)
             model.fit(x_train, y_train)
 
-            # model.fit(x_train, y_train)  # Train model
-
             y_train_pred = model.predict(x_train)
 
             y_test_pred = model.predict(x_test)
@@ -50,16 +62,8 @@ def evaluate_models(x_train, y_train, x_test, y_test, models, param):
 
             report[list(models.keys())[i]] = test_model_score
 
+        logging.info("utils.py: evaluate_models() finished")
         return report
-
-    except Exception as e:
-        raise CustomException(e, sys)
-
-
-def load_object(file_path):
-    try:
-        with open(file_path, "rb") as file_obj:
-            return pickle.load(file_obj)
 
     except Exception as e:
         raise CustomException(e, sys)

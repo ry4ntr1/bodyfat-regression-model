@@ -22,7 +22,7 @@ class ModelTrainer:
         logging.info("ModelTrainer Instance Initialized")
 
     def initiate_model_trainer(self, train_array, test_array):
-        try:
+        try: 
             logging.info("Initiating Model Trainer")
             x_train, y_train, x_test, y_test = train_array[:, :-1], train_array[:, -1], test_array[:, :-1], test_array[:, -1]
             models = {
@@ -74,6 +74,8 @@ class ModelTrainer:
                 }
             }
             model_report = evaluate_models(x_train, y_train, x_test, y_test, models, params)
+            for model_name, score in model_report.items():
+                logging.info(f"Model: {model_name}, Score: {score}")
             best_model_score = max(model_report.values())
             best_model_name = max(model_report, key=model_report.get)
             best_model = models[best_model_name]

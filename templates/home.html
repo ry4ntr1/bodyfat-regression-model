@@ -1,113 +1,81 @@
+<!DOCTYPE html>
 <html>
 
+<head>
+    <title>Body Fat Percentage Prediction</title>
+</head>
+
 <body>
-    <div class="login">
-        <h1>Student Exam Performance Indicator</h1>
+    <div class="container">
+        <h1>Body Fat Percentage Predictor</h1>
+        <form action="/predictdata" method="post">
+            <fieldset>
+                <legend>Enter Your Body Measurements</legend>
 
-        <form action="{{ url_for('predict_datapoint')}}" method="post">
-            <h1>
-                <legend>Student Exam Performance Prediction</legend>
-            </h1>
-            <div class="mb-3">
-                <label class="form-label">Gender</label>
-                <select class="form-control" name="gender" placeholder="Enter you Gender" required>
-                    <option class="placeholder" selected disabled value="">Select your Gender</option>
-                    <option value="male">
-                        Male
-                    </option>
-                    <option value="female">
-                        Female
-                    </option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Race or Ethnicity</label>
-                <select class="form-control" name="ethnicity" placeholder="Enter you ethnicity" required>
-                    <option class="placeholder" selected disabled value="">Select Ethnicity</option>
-                    <option value="group A">
-                        Group A
-                    </option>
-                    <option value="group B">
-                        Group B
-                    </option>
-                    <option value="group C">
-                        Group C
-                    </option>
-                    <option value="group D">
-                        Group D
-                    </option>
-                    <option value="group E">
-                        Group E
-                    </option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Parental Level of Education</label>
-                <select class="form-control" name="parental_level_of_education" placeholder="Enter you Parent Education"
-                    required>
-                    <option class="placeholder" selected disabled value="">Select Parent Education</option>
-                    <option value="associate's degree">
-                        associate's degree
-                    </option>
-                    <option value="bachelor's degree">
-                        bachelor's degree
-                    </option>
-                    <option value="high school">
-                        high school
-                    </option>
-                    <option value="master's degree">
-                        master's degree
-                    </option>
-                    <option value="some college">
-                        some college
-                    </option>
-                    <option value="some high school">
-                        some high school
-                    </option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Lunch Type</label>
-                <select class="form-control" name="lunch" placeholder="Enter you Lunch" required>
-                    <option class="placeholder" selected disabled value="">Select Lunch Type</option>
-                    <option value="free/reduced">
-                        free/reduced
-                    </option>
-                    <option value="standard">
-                        standard
-                    </option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Test preparation Course</label>
-                <select class="form-control" name="test_preparation_course" placeholder="Enter you Course" required>
-                    <option class="placeholder" selected disabled value="">Select Test_course</option>
-                    <option value="none">
-                        None
-                    </option>
-                    <option value="completed">
-                        Completed
-                    </option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Reading Score out of 100</label>
-                <input class="form-control" type="number" name="reading_score" placeholder="Enter your Reading score"
-                    min='0' max='100' />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Writing Score out of 100</label>
-                <input class="form-control" type="number" name="writing_score" placeholder="Enter your Reading Score"
-                    min='0' max='100' />
-            </div>
-            <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />
-            </div>
+                <!-- Input fields for each measurement -->
+                <div class="mb-3">
+                    <label>Age</label>
+                    <input type="number" name="age" placeholder="Enter your Age" required>
+                </div>
+                <div class="mb-3">
+                    <label>Weight</label>
+                    <input type="number" name="weight" placeholder="Enter your Weight" required>
+                </div>
+                <div class="mb-3">
+                    <label>Height</label>
+                    <input type="number" name="height" placeholder="Enter your Height" required>
+                </div>
+                <div class="mb-3">
+                    <label>Neck</label>
+                    <input type="number" name="neck" placeholder="Enter your Neck measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Chest</label>
+                    <input type="number" name="chest" placeholder="Enter your Chest measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Abdomen</label>
+                    <input type="number" name="abdomen" placeholder="Enter your Abdomen measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Hip</label>
+                    <input type="number" name="hip" placeholder="Enter your Hip measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Thigh</label>
+                    <input type="number" name="thigh" placeholder="Enter your Thigh measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Knee</label>
+                    <input type="number" name="knee" placeholder="Enter your Knee measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Ankle</label>
+                    <input type="number" name="ankle" placeholder="Enter your Ankle measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Biceps</label>
+                    <input type="number" name="biceps" placeholder="Enter your Biceps measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Forearm</label>
+                    <input type="number" name="forearm" placeholder="Enter your Forearm measurement" required>
+                </div>
+                <div class="mb-3">
+                    <label>Wrist</label>
+                    <input type="number" name="wrist" placeholder="Enter your Wrist measurement" required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="submit" value="Predict Body Fat Percentage">
+                </div>
+            </fieldset>
         </form>
-        <h2>
-            THE prediction is {{results}}
-        </h2>
 
-        <body>
+        {% if results %}
+        <h2>Prediction: {{ results }}%</h2>
+        {% endif %}
+    </div>
+</body>
 
 </html>
